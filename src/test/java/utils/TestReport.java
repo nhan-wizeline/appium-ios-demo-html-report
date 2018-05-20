@@ -29,7 +29,8 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, boolean isPassed, String testLog) {
         String screeshotPath = "";
         if(isPassed == false) {
-            screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
+            String filePath = captureScreenshot(appiumDriver);
+            screeshotPath = extentTest.addScreenCapture(filePath);
             testLog += screeshotPath;
         }
         testReport(appiumDriver, isPassed, testLog, testLog);
