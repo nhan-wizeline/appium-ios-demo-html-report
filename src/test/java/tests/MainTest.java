@@ -10,6 +10,7 @@ public class MainTest extends BaseTest {
 
     //@Test
     public void verifyTweetDetail(){
+        System.out.println("workingDir: " + System.getProperty("user.dir"));
         String botName = "Wize Bot";
         String botDescription = "@wizeservicesbot - Wize Services Challenge Bot";
 
@@ -22,6 +23,7 @@ public class MainTest extends BaseTest {
 
     @Test
     public void verifyBotNameAndDescription(){
+        System.out.println("workingDir: " + System.getProperty("user.dir"));
         String botName = "Wize Bot";
         String botDescription = "Wize Services Challenge Bot";
 
