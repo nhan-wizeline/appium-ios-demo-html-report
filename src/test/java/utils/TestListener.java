@@ -19,7 +19,7 @@ public class TestListener implements ITestListener {
         System.out.println("Start tests");
         if (TestReport.extentTest == null) {
             String workingDir = System.getProperty("user.dir");
-            System.out.println("workingDir" + workingDir);
+            System.out.println("workingDir: " + workingDir);
             extentReports = new ExtentReports(workingDir + "/report/AutomationTestReport.html", true, NetworkMode.OFFLINE);
         }
     }
