@@ -25,6 +25,20 @@ public class Common {
         }
     }
 
+    public static String captureScreenshot1(AppiumDriver appiumDriver) {
+        String fileName = "";
+        try {
+
+            fileName = "./"+generateUniqueString() + ".png";
+            File scrFile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File(fileName));
+        } catch (Exception e) {
+
+        } finally {
+            return fileName;
+        }
+    }
+
     public static String generateUniqueString() {
         String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss").format(Calendar.getInstance().getTime());
         return timeStamp;
