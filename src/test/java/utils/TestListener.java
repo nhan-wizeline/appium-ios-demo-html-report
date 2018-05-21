@@ -6,6 +6,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.File;
+
 
 public class TestListener implements ITestListener {
     private static ExtentReports extentReports;
@@ -21,6 +23,7 @@ public class TestListener implements ITestListener {
             String workingDir = System.getProperty("user.dir");
             System.out.println("workingDir: " + workingDir);
             extentReports = new ExtentReports(workingDir + "/report/AutomationTestReport.html", true, NetworkMode.ONLINE);
+            extentReports.loadConfig(new File("report-config.xml"));
         }
     }
 

@@ -8,7 +8,7 @@ import pages.PageTweetDetails;
 
 public class MainTest extends BaseTest {
 
-    //@Test
+    @Test
     public void verifyTweetDetail(){
         String botName = "Wize Bot";
         String botDescription = "@wizeservicesbot - Wize Services Challenge Bot";
@@ -32,14 +32,5 @@ public class MainTest extends BaseTest {
         System.out.println("Actual: " + pageHome.getBotName() + " - " + pageHome.getBotDescription());
 
         Assert.assertTrue(pageHome.verifyBotNameAndBotDesc(botName, botDescription));
-    }
-
-    //@Test
-    public void test(){
-        String botName = "Wize Bot";
-        String botDescription = "Wize \\Services\\Challenge Bot";
-
-        String tmp = botDescription.substring(botDescription.lastIndexOf("\\") + 1, botDescription.length());
-        System.out.println("tmp" + tmp);
     }
 }
