@@ -13,13 +13,23 @@ public class Common {
 
     public static String captureScreenshot(AppiumDriver appiumDriver) {
         String filePath = "";
+
         try {
             String workingDir = System.getProperty("user.dir");
-            filePath = workingDir + "/report/" + generateUniqueString() + ".png";
-            File scrFile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File(filePath));
-        } catch (Exception e) {
+            String jenkinsEnv = System.getProperty("runOnJenkins");
 
+            File scrFile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
+            if((jenkinsEnv == null)||(!jenkinsEnv.equals("true"))) {
+                filePath = workingDir + "/report/" + generateUniqueString() + ".png";
+                FileUtils.copyFile(scrFile, new File(filePath));
+            }
+            else{
+                filePath = generateUniqueString() + ".png";
+                FileUtils.copyFile(scrFile, new File(filePath));
+            }
+
+        } catch (Exception e) {
+            System.out.println("captureScreenshot exception: " + e.getMessage());
         } finally {
             return filePath;
         }

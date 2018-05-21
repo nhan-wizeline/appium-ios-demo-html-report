@@ -92,6 +92,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <environmentVariables>
+                        <runOnJenkins>{env.jenkins}</runOnJenkins>
+                    </environmentVariables>
                 </configuration>
             </plugin>
         </plugins>
