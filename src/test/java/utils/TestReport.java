@@ -17,7 +17,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, boolean isPassed, String passMessage, String failMessage, boolean isCaptureScreenshot) {
         String screeshotPath = "";
         if (isCaptureScreenshot) {
-            screeshotPath = extentTest.addScreenCapture(captureScreenshot1(appiumDriver));
+            screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
             passMessage += screeshotPath;
             failMessage += screeshotPath;
         }
@@ -29,7 +29,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, boolean isPassed, String testLog) {
         String screeshotPath = "";
         if(isPassed == false) {
-            String filePath = captureScreenshot1(appiumDriver);
+            String filePath = captureScreenshot(appiumDriver);
             screeshotPath = extentTest.addScreenCapture(filePath);
             testLog += screeshotPath;
         }
@@ -40,7 +40,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, LogStatus status, String msgDetail, boolean isCaptureScreenshot) {
         String screeshotPath = "";
         if (isCaptureScreenshot) {
-            screeshotPath = extentTest.addScreenCapture(captureScreenshot1(appiumDriver));
+            screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
             msgDetail += screeshotPath;
         }
 
@@ -50,7 +50,7 @@ public class TestReport {
     // always capture screenshot
     public static void testReport(AppiumDriver appiumDriver, LogStatus status, String msgDetail) {
         String screeshotPath = "";
-        screeshotPath = extentTest.addScreenCapture(captureScreenshot1(appiumDriver));
+        screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
         msgDetail += screeshotPath;
 
         extentTest.log(status, msgDetail);
