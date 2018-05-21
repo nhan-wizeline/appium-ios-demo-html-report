@@ -33,4 +33,13 @@ public class MainTest extends BaseTest {
 
         Assert.assertTrue(pageHome.verifyBotNameAndBotDesc(botName, botDescription));
     }
+
+    //@Test
+    public void test(){
+        String botName = "Wize Bot";
+        String botDescription = "Wize \\Services\\Challenge Bot";
+
+        String tmp = botDescription.substring(botDescription.lastIndexOf("\\") + 1, botDescription.length());
+        System.out.println("tmp" + tmp);
+    }
 }

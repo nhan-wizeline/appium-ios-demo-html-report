@@ -17,7 +17,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, boolean isPassed, String passMessage, String failMessage, boolean isCaptureScreenshot) {
         String screeshotPath = "";
         if (isCaptureScreenshot) {
-            screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
+            screeshotPath = extentTest.addScreenCapture(getScreenshotPathBasingOnEnv(captureScreenshot(appiumDriver)));
             passMessage += screeshotPath;
             failMessage += screeshotPath;
         }
@@ -29,7 +29,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, boolean isPassed, String testLog) {
         String screeshotPath = "";
         if(isPassed == false) {
-            String filePath = captureScreenshot(appiumDriver);
+            String filePath = getScreenshotPathBasingOnEnv(captureScreenshot(appiumDriver));
             screeshotPath = extentTest.addScreenCapture(filePath);
             testLog += screeshotPath;
         }
@@ -40,7 +40,7 @@ public class TestReport {
     public static void testReport(AppiumDriver appiumDriver, LogStatus status, String msgDetail, boolean isCaptureScreenshot) {
         String screeshotPath = "";
         if (isCaptureScreenshot) {
-            screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
+            screeshotPath = extentTest.addScreenCapture(getScreenshotPathBasingOnEnv(captureScreenshot(appiumDriver)));
             msgDetail += screeshotPath;
         }
 
@@ -50,7 +50,7 @@ public class TestReport {
     // always capture screenshot
     public static void testReport(AppiumDriver appiumDriver, LogStatus status, String msgDetail) {
         String screeshotPath = "";
-        screeshotPath = extentTest.addScreenCapture(captureScreenshot(appiumDriver));
+        screeshotPath = extentTest.addScreenCapture(getScreenshotPathBasingOnEnv(captureScreenshot(appiumDriver)));
         msgDetail += screeshotPath;
 
         extentTest.log(status, msgDetail);
@@ -74,5 +74,17 @@ public class TestReport {
         testReport(appiumDriver, LogStatus.FAIL, ex.getMessage() + "\nStackTrace: " + sStackTrace, true);
         System.out.println("Exception: " + ex.getMessage());
         fail();
+    }
+
+    private static String getScreenshotPathBasingOnEnv(String filePath){
+        String jenkinsEnv = System.getProperty("runOnJenkins");
+        System.out.println("jenkinsEnv"  + jenkinsEnv);
+
+        if((jenkinsEnv == null)||(!jenkinsEnv.equals("true"))) {
+            return filePath;
+        }
+
+        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
+        return fileName;
     }
 }

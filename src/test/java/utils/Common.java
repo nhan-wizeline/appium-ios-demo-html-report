@@ -16,18 +16,10 @@ public class Common {
 
         try {
             String workingDir = System.getProperty("user.dir");
-            String jenkinsEnv = System.getProperty("runOnJenkins");
-
             File scrFile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
-            if((jenkinsEnv == null)||(!jenkinsEnv.equals("true"))) {
-                filePath = workingDir + "/report/" + generateUniqueString() + ".png";
-                FileUtils.copyFile(scrFile, new File(filePath));
-            }
-            else{
-                filePath = generateUniqueString() + ".png";
-                FileUtils.copyFile(scrFile, new File(filePath));
-            }
 
+            filePath = workingDir + "/report/" + generateUniqueString() + ".png";
+            FileUtils.copyFile(scrFile, new File(filePath));
         } catch (Exception e) {
             System.out.println("captureScreenshot exception: " + e.getMessage());
         } finally {
